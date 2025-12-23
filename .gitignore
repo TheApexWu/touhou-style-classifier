@@ -1,0 +1,53 @@
+# Audio files (large, download separately)
+data/raw/
+*.flac
+*.mp3
+*.wav
+*.ogg
+*.m4a
+
+# Processed data
+data/processed/
+*.pt
+*.npy
+*.npz
+
+# Keep metadata folder structure but ignore large files
+data/metadata/*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model weights
+models/
+*.pth
+*.ckpt
+
+# Logs
+*.log
+runs/
+wandb/
