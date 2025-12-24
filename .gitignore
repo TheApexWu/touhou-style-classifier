@@ -51,3 +51,6 @@ models/
 *.log
 runs/
 wandb/
+
+# Private notes
+docs/decision_log.md
