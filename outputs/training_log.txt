@@ -1,0 +1,81 @@
+============================================================
+FULL TOUHOU DIFFUSION TRAINING
+============================================================
+Config: {'epochs': 500, 'batch_size': 8, 'lr': 0.0002, 'checkpoint_every': 100, 'sample_every': 100, 'cache_clear_every': 50, 'crops_per_track': 3, 'timesteps': 1000, 'cfg_dropout': 0.1, 'cfg_scale': 3.0}
+Device: mps
+
+Loading ALL spectrograms...
+  IOSYS: 966 spectrograms
+  UNDEAD CORPORATION: 183 spectrograms
+  暁Records: 837 spectrograms
+  SOUND HOLIC: 600 spectrograms
+  Liz Triangle: 246 spectrograms
+
+Total: 2832 spectrograms in 530.8s
+
+Training from epoch 0 to 500...
+Batches per epoch: 354
+Epoch 10/500 | Loss: 0.0437 | Time: 24.3s | ETA: 203min
+Epoch 20/500 | Loss: 0.0418 | Time: 27.0s | ETA: 203min
+Epoch 30/500 | Loss: 0.0436 | Time: 54.2s | ETA: 225min
+Epoch 40/500 | Loss: 0.0404 | Time: 27.0s | ETA: 273min
+Epoch 50/500 | Loss: 0.0390 | Time: 34.9s | ETA: 404min
+Epoch 60/500 | Loss: 0.0415 | Time: 42.3s | ETA: 383min
+Epoch 70/500 | Loss: 0.0419 | Time: 38.9s | ETA: 366min
+Epoch 80/500 | Loss: 0.0406 | Time: 24.2s | ETA: 351min
+Epoch 90/500 | Loss: 0.0424 | Time: 25.1s | ETA: 324min
+Epoch 100/500 | Loss: 0.0408 | Time: 25.3s | ETA: 302min
+  Checkpoint saved: epoch 100
+  Samples saved: /Users/amadeuswoo/Documents/GitHub/touhou-style-classifier/outputs/touhou_full_epoch_100.png
+Epoch 110/500 | Loss: 0.0410 | Time: 23.2s | ETA: 286min
+Epoch 120/500 | Loss: 0.0391 | Time: 25.1s | ETA: 269min
+Epoch 130/500 | Loss: 0.0379 | Time: 27.9s | ETA: 254min
+Epoch 140/500 | Loss: 0.0373 | Time: 31.8s | ETA: 241min
+Epoch 150/500 | Loss: 0.0384 | Time: 28.7s | ETA: 230min
+Epoch 160/500 | Loss: 0.0396 | Time: 31.2s | ETA: 220min
+Epoch 170/500 | Loss: 0.0364 | Time: 28.2s | ETA: 210min
+Epoch 180/500 | Loss: 0.0379 | Time: 27.1s | ETA: 201min
+Epoch 190/500 | Loss: 0.0373 | Time: 32.8s | ETA: 193min
+Epoch 200/500 | Loss: 0.0360 | Time: 48.7s | ETA: 189min
+  Checkpoint saved: epoch 200
+  Samples saved: /Users/amadeuswoo/Documents/GitHub/touhou-style-classifier/outputs/touhou_full_epoch_200.png
+Epoch 210/500 | Loss: 0.0369 | Time: 55.1s | ETA: 208min
+Epoch 220/500 | Loss: 0.0356 | Time: 27.4s | ETA: 201min
+Epoch 230/500 | Loss: 0.0332 | Time: 922.1s | ETA: 209min
+Epoch 240/500 | Loss: 0.0377 | Time: 26.4s | ETA: 197min
+Epoch 250/500 | Loss: 0.0350 | Time: 28.4s | ETA: 187min
+Epoch 260/500 | Loss: 0.0387 | Time: 30.9s | ETA: 177min
+Epoch 270/500 | Loss: 0.0360 | Time: 59.8s | ETA: 170min
+Epoch 280/500 | Loss: 0.0339 | Time: 68.9s | ETA: 165min
+Epoch 290/500 | Loss: 0.0361 | Time: 31.4s | ETA: 156min
+Epoch 300/500 | Loss: 0.0371 | Time: 32.2s | ETA: 147min
+  Checkpoint saved: epoch 300
+  Samples saved: /Users/amadeuswoo/Documents/GitHub/touhou-style-classifier/outputs/touhou_full_epoch_300.png
+Epoch 310/500 | Loss: 0.0383 | Time: 32.2s | ETA: 140min
+Epoch 320/500 | Loss: 0.0381 | Time: 31.7s | ETA: 131min
+Epoch 330/500 | Loss: 0.0405 | Time: 31.6s | ETA: 123min
+Epoch 340/500 | Loss: 0.0372 | Time: 32.9s | ETA: 115min
+Epoch 350/500 | Loss: 0.0361 | Time: 30.9s | ETA: 107min
+Epoch 360/500 | Loss: 0.0391 | Time: 31.2s | ETA: 99min
+Epoch 370/500 | Loss: 0.0340 | Time: 31.0s | ETA: 91min
+Epoch 380/500 | Loss: 0.0380 | Time: 30.8s | ETA: 83min
+Epoch 390/500 | Loss: 0.0336 | Time: 32.7s | ETA: 76min
+Epoch 400/500 | Loss: 0.0370 | Time: 31.5s | ETA: 69min
+  Checkpoint saved: epoch 400
+  Samples saved: /Users/amadeuswoo/Documents/GitHub/touhou-style-classifier/outputs/touhou_full_epoch_400.png
+Epoch 410/500 | Loss: 0.0350 | Time: 31.2s | ETA: 62min
+Epoch 420/500 | Loss: 0.0351 | Time: 30.9s | ETA: 55min
+Epoch 430/500 | Loss: 0.0361 | Time: 30.7s | ETA: 47min
+Epoch 440/500 | Loss: 0.0355 | Time: 31.4s | ETA: 40min
+Epoch 450/500 | Loss: 0.0371 | Time: 30.9s | ETA: 34min
+Epoch 460/500 | Loss: 0.0363 | Time: 31.1s | ETA: 27min
+Epoch 470/500 | Loss: 0.0352 | Time: 32.1s | ETA: 20min
+Epoch 480/500 | Loss: 0.0371 | Time: 30.7s | ETA: 13min
+Epoch 490/500 | Loss: 0.0323 | Time: 59.2s | ETA: 7min
+Epoch 500/500 | Loss: 0.0347 | Time: 30.5s | ETA: 0min
+  Checkpoint saved: epoch 500
+  Samples saved: /Users/amadeuswoo/Documents/GitHub/touhou-style-classifier/outputs/touhou_full_epoch_500.png
+
+Training complete in 334.2 minutes
+Final model saved: /Users/amadeuswoo/Documents/GitHub/touhou-style-classifier/outputs/touhou_diffusion_full.pt
+Done!
