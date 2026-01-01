@@ -1,0 +1,54 @@
+{
+  "experiment": "Neural Embeddings Comparison",
+  "date": "2026-01-01",
+  "samples_per_circle": 20,
+  "total_samples": 100,
+  "methods": {
+    "clap": {
+      "model": "laion/clap-htsat-unfused",
+      "overall_accuracy": 0.57,
+      "feature_dimension": 512,
+      "extraction_time_per_sample": 0.14,
+      "per_class": {
+        "IOSYS": 0.45,
+        "Liz Triangle": 0.60,
+        "SOUND HOLIC": 0.30,
+        "UNDEAD CORPORATION": 0.90,
+        "暁Records": 0.60
+      }
+    },
+    "mert": {
+      "model": "m-a-p/MERT-v1-95M",
+      "overall_accuracy": 0.52,
+      "feature_dimension": 768,
+      "extraction_time_per_sample": 5.43,
+      "per_class": {
+        "IOSYS": 0.40,
+        "Liz Triangle": 0.70,
+        "SOUND HOLIC": 0.25,
+        "UNDEAD CORPORATION": 0.80,
+        "暁Records": 0.45
+      }
+    },
+    "handcrafted": {
+      "features": "MFCCs + Mel spectrogram + Chroma + Spectral contrast + Spectral stats + Tempo",
+      "overall_accuracy": 0.76,
+      "feature_dimension": 431,
+      "extraction_time_per_sample": 2.28,
+      "per_class": {
+        "IOSYS": 0.70,
+        "Liz Triangle": 0.75,
+        "SOUND HOLIC": 0.60,
+        "UNDEAD CORPORATION": 0.95,
+        "暁Records": 0.80
+      }
+    }
+  },
+  "key_findings": [
+    "Handcrafted features outperform pretrained embeddings by 19-24%",
+    "UNDEAD CORPORATION (death metal) is most distinctive across all methods",
+    "SOUND HOLIC (eurobeat/trance) is hardest to classify",
+    "CLAP (general audio) slightly outperforms MERT (music-specific) on this task",
+    "Domain-specific feature engineering beats transfer learning for this niche task"
+  ]
+}

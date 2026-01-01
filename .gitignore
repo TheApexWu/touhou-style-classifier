@@ -54,3 +54,4 @@ wandb/
 
 # Private notes
 docs/decision_log.md
+data/MNIST/
