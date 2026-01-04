@@ -1,6 +1,8 @@
 # Touhou Arrangement Style Classifier
 
-Classify which doujin circle arranged a Touhou track based on audio features.
+ML classifier that identifies which doujin circle (fan arrangement group) created a Touhou arrangement based on audio features. Trained on 954 tracks from 5 major circles.
+
+**Live demo**: [touhou-web.vercel.app/classifier](https://touhou-web.vercel.app/classifier)
 
 ## Results
 
@@ -9,10 +11,10 @@ Classify which doujin circle arranged a Touhou track based on audio features.
 | Model | Accuracy | Notes |
 |-------|----------|-------|
 | **Random Forest (expanded)** | **89.5%** ± 2.2% | Best model, 200 estimators, 431 features |
-| Random Forest (stratified) | 80.0% ± 22.5% | GroupKFold by source track (stricter) |
+| Random Forest (stratified) | 80.0% ± 22.5% | GroupKFold by source track (stricter eval) |
 | Random Forest (baseline) | 76.2% | Simple train/test split |
 
-### Embeddings Comparison
+### Handcrafted vs Pretrained Embeddings
 
 | Method | Accuracy | Feature Dim | Time/Sample |
 |--------|----------|-------------|-------------|
@@ -20,17 +22,17 @@ Classify which doujin circle arranged a Touhou track based on audio features.
 | CLAP (pretrained) | 57.0% | 512 | 0.14s |
 | MERT (music-specific) | 52.0% | 768 | 5.43s |
 
-**Key finding:** Handcrafted features outperform pretrained audio embeddings by 19-24% on this task. Domain-specific feature engineering beats transfer learning for niche music classification.
+**Key finding**: Handcrafted features outperform pretrained audio embeddings by 19-24%. Domain-specific feature engineering beats transfer learning for niche music classification.
 
-### Per-Circle Performance (Handcrafted, 76% overall)
+### Per-Circle Performance
 
 | Circle | Accuracy | Style |
 |--------|----------|-------|
-| UNDEAD CORPORATION | 95% | Death metal - most distinctive |
+| UNDEAD CORPORATION | 95% | Death metal (most distinctive) |
 | 暁Records | 80% | Rock, vocal |
 | Liz Triangle | 75% | Acoustic, folk |
 | IOSYS | 70% | Electronic, denpa |
-| SOUND HOLIC | 60% | Eurobeat, trance - hardest |
+| SOUND HOLIC | 60% | Eurobeat, trance (hardest to classify) |
 
 ## Target Circles
 
@@ -42,17 +44,24 @@ Classify which doujin circle arranged a Touhou track based on audio features.
 | SOUND HOLIC | Eurobeat, trance | 202 |
 | Liz Triangle | Acoustic, folk | 84 |
 
+## Why Handcrafted > Pretrained?
+
+1. **Domain mismatch**: CLAP/MERT trained on general audio, not Touhou arrangements
+2. **Small dataset**: 954 tracks doesn't benefit from transfer learning
+3. **Style vs content**: Pretrained models capture content (instruments, genre); circle style is subtler (production choices, mixing, arrangement patterns)
+4. **Interpretability**: We can explain why UNDEAD CORPORATION is distinctive (low spectral centroid = dark/heavy, high spectral contrast = metal dynamics)
+
 ## Diffusion Experiments
 
-Implemented DDPM from scratch for understanding generative modeling:
+Implemented DDPM from scratch as a learning exercise for generative modeling:
 
 - **NoiseSchedule**: Linear and cosine β schedules
 - **U-Net**: Skip connections, GroupNorm, sinusoidal time embeddings
-- **Sampling**: Both DDPM (1000 steps) and DDIM (50 steps, deterministic)
+- **Sampling**: DDPM (1000 steps) and DDIM (50 steps, deterministic)
 - **Training**: 500 epochs on 2832 mel spectrograms (~5.5 hours on M2 Mac)
-- **Conditional generation**: Class-conditioned with classifier-free guidance (CFG scale 3.0)
+- **Conditioning**: Class-conditioned with classifier-free guidance (CFG scale 3.0)
 
-See `scripts/experiment_diffusion_simple.py` for educational implementation.
+See `scripts/experiment_diffusion_simple.py` for the educational implementation.
 
 ## Setup
 
@@ -94,6 +103,15 @@ python scripts/experiment_diffusion_simple.py --train
 python scripts/experiment_diffusion_simple.py --spectrogram
 ```
 
+## Feature Extraction (431 dimensions)
+
+- **Mel spectrogram**: 128 mels, summarized (mean, std per band) = 256
+- **MFCCs**: 20 coefficients + delta + delta-delta = 60
+- **Chroma**: 12 pitch classes
+- **Spectral contrast**: 7 bands
+- **Spectral stats**: Centroid, bandwidth, rolloff, flatness (mean, std, min, max each) = 16
+- **Tempo**: BPM estimate
+
 ## Project Structure
 
 ```
@@ -119,23 +137,10 @@ outputs/
 └── *.png                       # Visualizations
 ```
 
-## Technical Details
+## Related Projects
 
-### Feature Extraction (431 dimensions)
-
-- **Mel spectrogram**: 128 mels, summarized (mean, std per band)
-- **MFCCs**: 20 coefficients + delta + delta-delta
-- **Chroma**: 12 pitch classes
-- **Spectral contrast**: 7 bands
-- **Spectral stats**: Centroid, bandwidth, rolloff, flatness (mean, std, min, max each)
-- **Tempo**: BPM estimate
-
-### Why Handcrafted > Pretrained?
-
-1. **Domain mismatch**: CLAP/MERT trained on general audio, not Touhou arrangements
-2. **Small dataset**: 954 tracks doesn't benefit from transfer learning
-3. **Style vs content**: Pretrained models capture content (instruments, genre); circle style is more subtle (production choices, arrangement patterns)
-4. **Interpretability**: We can explain why UNDEAD CORPORATION is distinctive (low spectral centroid, high spectral contrast)
+- [touhou-composition-analysis](https://github.com/TheApexWu/touhou-composition-analysis): Computational musicology analyzing ZUN's 379 original tracks across 19 games
+- [touhou-web](https://github.com/TheApexWu/touhou-web): Interactive web demo for both projects
 
 ## License
 
